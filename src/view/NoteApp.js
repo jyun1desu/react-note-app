@@ -34,6 +34,10 @@ const NoteApp = styled.div`
             }
         }
     }
+    main,footer{
+        width: 92%;
+        margin: 0 auto;
+    }
 `
 
 function Home() {
