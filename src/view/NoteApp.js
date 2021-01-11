@@ -13,6 +13,8 @@ const NoteApp = styled.div`
     background-color: ${color.main_background_color};
     padding: 20px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 
     header{
         display: flex;
@@ -34,9 +36,12 @@ const NoteApp = styled.div`
             }
         }
     }
-    main,footer{
+    main{
         width: 92%;
         margin: 0 auto;
+    }
+    footer{
+        margin-top: auto;
     }
 `
 
