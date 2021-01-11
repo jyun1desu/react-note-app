@@ -13,6 +13,27 @@ const NoteApp = styled.div`
     background-color: ${color.main_background_color};
     padding: 20px;
     box-sizing: border-box;
+
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .title{
+            text-align: center;
+            p{
+                margin: 0;
+                &.main{
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                }
+                &.sub{
+                    font-size: 12px; 
+                    color: #8E8E8E;
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
 `
 
 function Home() {
@@ -21,7 +42,7 @@ function Home() {
             <header>
                 <SettingButton />
                 <div className="title">
-                    <p className="main">ALL NOTES</p>
+                    <p className="main">All NOTES</p>
                     <p className="sub">Total 5 Notes</p>
                 </div>
                 <EditListButton />
