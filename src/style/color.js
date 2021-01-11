@@ -4,7 +4,7 @@ export const color = {
     highlight_color: '#FDCA0C',
     non_highlight_color:'#EDEDED',
     searchbar_color:'#FFE3E3',
-    line_color:'#CE9C99',
+    line_color:'#D6969C',
     main_font_color:'#0E0E0E',
     input_hint_color:'#979797',
     to_previous_button_color:'#D5F5E9',
