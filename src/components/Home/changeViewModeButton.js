@@ -22,8 +22,6 @@ const Button = styled.button`
     }
 `
 
-
-
 const button = () => {
     return (
         <Button>

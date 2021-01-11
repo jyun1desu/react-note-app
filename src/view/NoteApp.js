@@ -42,6 +42,8 @@ const NoteApp = styled.div`
     }
     footer{
         margin-top: auto;
+        display: flex;
+        justify-content: space-between;
     }
 `
 
