@@ -6,11 +6,16 @@ const List = styled.ul`
     padding: 0;
     margin: 0;
     overflow: hidden;
+    &.gallery_mode{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 `
 
 const noteList = () => {
     return (
-        <List>
+        <List className="gallery_mode">
             <Note/>
             <Note/>
             <Note/>

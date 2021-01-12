@@ -11,7 +11,7 @@ import SettingButton from '../components/Home/settingButton';
 const NoteApp = styled.div`
     height:100%;
     background-color: ${color.main_background_color};
-    padding: 20px;
+    padding: 15px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -39,8 +39,9 @@ const NoteApp = styled.div`
         }
     }
     main{
-        width: 94%;
-        margin: 15px auto;
+        margin: 15px 0;
+        box-sizing: border-box;
+        padding: 0 15px;
         overflow: scroll;
     }
     footer{
