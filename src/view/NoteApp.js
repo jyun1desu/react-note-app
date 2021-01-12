@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { color } from '../style/color';
 //components
 import NoteList from '../components/Home/notelist';
 import SearchBar from '../components/Home/searchbar';
@@ -10,8 +9,6 @@ import SettingButton from '../components/Home/settingButton';
 
 const NoteApp = styled.div`
     height:100%;
-    background-color: ${color.main_background_color};
-    padding: 15px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
