@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import { color } from '../style/color';
-import SettingButton from '../components/Home/settingButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 //router
 import { Link } from 'react-router-dom';
+//components
+import SettingButton from '../components/Home/settingButton';
+import ToggleThemeButton from '../components/Setting/toggleThemeButton';
 
 const Page = styled.div`
     display: flex;
@@ -73,22 +75,6 @@ const Page = styled.div`
         align-items: center;
         .mode_toggle{
             display: flex;
-            .toogler{
-                width: 45px;
-                height: 18px;
-                margin-left: 10px;
-                border-radius: 20px;
-                background-color: ${color.line_color};
-
-                .switch_button{
-                    display: inline-block;
-                    height: 100%;
-                    width: 18px;
-                    border-radius: 9px;
-                    background-color: #fff;
-                    transform: translateX(4px);
-                }
-            }
         }
     }
 `
@@ -131,9 +117,7 @@ function Setting() {
             <footer>
                 <div className="mode_toggle">
                     <span>Mode</span>
-                    <div className="toogler">
-                        <span className="switch_button"></span>
-                    </div>
+                    <ToggleThemeButton/>
                 </div>
                 <div className="logout">Log out</div>
             </footer>
