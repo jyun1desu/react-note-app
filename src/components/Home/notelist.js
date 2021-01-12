@@ -3,6 +3,7 @@ import styled from 'styled-components';
 //redux
 import { connect } from 'react-redux';
 
+
 const List = styled.ul`
     list-style: none;
     padding: 0;
@@ -18,21 +19,23 @@ const List = styled.ul`
 const NoteList = (props) => {
     return (
         <List className={props.nowMode==='gallery'?'gallery_mode':''}>
-            <Note nowMode={props.nowMode}/>
-            <Note nowMode={props.nowMode}/>
-            <Note nowMode={props.nowMode}/>
-            <Note nowMode={props.nowMode}/>
-            <Note nowMode={props.nowMode}/>
-            <Note nowMode={props.nowMode}/>
-            <Note nowMode={props.nowMode}/>
-            <Note nowMode={props.nowMode}/>
-            <Note nowMode={props.nowMode}/>
+            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
         </List>
     );
 }
 
 const mapStateToProps = state => ({
-    nowMode: state.listMode
+    nowMode: state.listMode,
+    isDeletedMode: state.deleteMode
 })
 
 export default connect(

@@ -1,1 +1,2 @@
 export const CHANGE_MODE = 'CHANGE_MODE';
+export const TOGGLE_DELETE_MODE = 'TOGGLE_DELETE_MODE';

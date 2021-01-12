@@ -105,11 +105,27 @@ const Note = styled.li`
         }
     }
 
+    &.deleted_mode{
+        .primary_mark{
+            display: none;
+        }
+        .note_info{
+            margin-left: 0;
+        }
+        .deleted_select{
+            width: 15px;
+            height: 15px;
+            border: 1px solid ${color.line_color};
+            border-radius: 50%;
+            margin-left: 7px;
+        }
+    }
+
 `
 
 const note = (props) => {
     return (
-            <Note className={props.nowMode==='gallery'?'gallery_mode':''}>
+            <Note className={`${props.nowMode==='gallery'?'gallery_mode':''} ${props.isDeletedMode?'deleted_mode':''}`}>
                 <div className="primary_mark">
                     <FontAwesomeIcon icon={faStar} className="icon" />
                 </div>
@@ -121,6 +137,7 @@ const note = (props) => {
                     </div>
                     <span className="note_made_date">Dec 25, 2019</span>
                 </div>
+                <span className="deleted_select"></span>
             </Note>
     );
 }

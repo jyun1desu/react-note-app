@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 import { color } from '../../style/color';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
+import { connect } from 'react-redux';
 
 const Button = styled.button`
-    .button_icon{
+    .plus_icon{
+        display: ${props=>props.isDeleteMode?'none':'block'};
         position: relative;
         width: 16px;
         height: 16px;
@@ -20,13 +24,19 @@ const Button = styled.button`
             }
         }
     }
+    .delete_icon{
+        display: ${props=>props.isDeleteMode?'block':'none'};
+        color: ${color.line_color};
+        font-size: 17px;
+    }
 `
 
 
-const button = (props) => {
+const HandleButton = (props) => {
     return (
-        <Button>
-            <div className="button_icon plus">
+        <Button isDeleteMode={props.isDeleteMode}>
+            <FontAwesomeIcon icon={faTrashAlt} className="delete_icon" />
+            <div className="plus_icon">
                 <span className="line horizantal"></span>
                 <span className="line vertical"></span>
             </div>
@@ -34,4 +44,10 @@ const button = (props) => {
     );
 }
 
-export default button;
+const mapStateToProps = state => ({
+    isDeleteMode: state.deleteMode
+})
+
+export default connect(
+    mapStateToProps
+)(HandleButton);

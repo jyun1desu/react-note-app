@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 import { color } from '../../style/color';
+//redux
+import { connect } from 'react-redux';
+import { toggleDeleteMode } from '../../redux/actions'
+import { useDispatch } from 'react-redux';
 
 const Button = styled.button`
     display: inline-block;
@@ -24,9 +28,13 @@ const Button = styled.button`
 
 `
 
-const button = () => {
+const EditButton = (props) => {
+    const dispatch = useDispatch();
+    function toggleMode(){
+        dispatch(toggleDeleteMode());
+    }
     return (
-        <Button>
+        <Button onClick={()=>toggleMode()}>
             <div className="pattern">
                 <span className="dot"></span>
                 <span className="dot"></span>
@@ -36,4 +44,11 @@ const button = () => {
     );
 }
 
-export default button;
+const mapStateToProps = state => ({
+    isDeleteMode: state.deleteMode
+})
+
+export default connect(
+    mapStateToProps,
+    toggleDeleteMode
+)(EditButton);
