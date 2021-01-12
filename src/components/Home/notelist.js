@@ -1,16 +1,27 @@
-import Todo from './note';
+import Note from './note';
+import styled from 'styled-components';
 
-
+const List = styled.ul`
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+`
 
 const noteList = () => {
     return (
-        <div>
-            list start
-            <Todo/>
-            <Todo/>
-            <Todo/>
-            list end
-        </div>
+        <List>
+            <Note/>
+            <Note/>
+            <Note/>
+            <Note/>
+            <Note/>
+            <Note/>
+            <Note/>
+            <Note/>
+            <Note/>
+            <Note/>
+        </List>
     );
 }
 

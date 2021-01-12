@@ -14,7 +14,7 @@ body {
 
 button{
   padding: 0;
-  border: none;
+  border:none;
 }
 button:focus{
   outline: none;

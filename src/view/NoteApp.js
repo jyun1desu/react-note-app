@@ -32,15 +32,19 @@ const NoteApp = styled.div`
                     font-size: 12px; 
                     color: #8E8E8E;
                     margin-top: 5px;
+                    font-family: 'Mulish', sans-serif;
+                    letter-spacing: 1px;
                 }
             }
         }
     }
     main{
-        width: 92%;
-        margin: 0 auto;
+        width: 94%;
+        margin: 15px auto;
+        overflow: scroll;
     }
     footer{
+        flex: 0 0 auto;
         margin-top: auto;
         display: flex;
         justify-content: space-between;
@@ -58,8 +62,8 @@ function Home() {
                 </div>
                 <EditListButton />
             </header>
+            <SearchBar />
             <main>
-                <SearchBar />
                 <NoteList />
             </main>
             <footer>

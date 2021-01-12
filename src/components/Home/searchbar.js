@@ -15,6 +15,9 @@ const SearchArea = styled.div`
         background-color: #FFE3E3;
         padding:8px 20px;
         color: ${color.line_color};
+        font-family: 'Mulish', sans-serif;
+        font-size: 14px;
+        letter-spacing: 1px;
         &::placeholder{
             color: #EBBEBF;
         }
