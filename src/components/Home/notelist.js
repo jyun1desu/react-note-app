@@ -1,5 +1,7 @@
 import Note from './note';
 import styled from 'styled-components';
+//redux
+import { connect } from 'react-redux';
 
 const List = styled.ul`
     list-style: none;
@@ -13,21 +15,26 @@ const List = styled.ul`
     }
 `
 
-const noteList = () => {
+const NoteList = (props) => {
     return (
-        <List className="gallery_mode">
-            <Note/>
-            <Note/>
-            <Note/>
-            <Note/>
-            <Note/>
-            <Note/>
-            <Note/>
-            <Note/>
-            <Note/>
-            <Note/>
+        <List className={props.nowMode==='gallery'?'gallery_mode':''}>
+            <Note nowMode={props.nowMode}/>
+            <Note nowMode={props.nowMode}/>
+            <Note nowMode={props.nowMode}/>
+            <Note nowMode={props.nowMode}/>
+            <Note nowMode={props.nowMode}/>
+            <Note nowMode={props.nowMode}/>
+            <Note nowMode={props.nowMode}/>
+            <Note nowMode={props.nowMode}/>
+            <Note nowMode={props.nowMode}/>
         </List>
     );
 }
 
-export default noteList;
+const mapStateToProps = state => ({
+    nowMode: state.listMode
+})
+
+export default connect(
+    mapStateToProps
+  )(NoteList)

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import { color } from '../../style/color';
+//redux
+import { connect } from 'react-redux';
+import { changeListMode } from '../../redux/actions'
+import { useDispatch } from 'react-redux';
+//
 
 const Button = styled.button`
     .button_icon{
@@ -22,10 +27,21 @@ const Button = styled.button`
     }
 `
 
-const button = () => {
+const ModeButton = (props) => {
+    const dispatch = useDispatch();
+    function handleChangeMode(){
+        if(props.nowMode==='list'){
+            dispatch(changeListMode('gallery'));
+        }else{
+            dispatch(changeListMode('list'));
+        }
+    }
+
     return (
         <Button>
-            <div className="button_icon">
+            <div 
+            onClick={()=>{handleChangeMode()}}
+            className="button_icon">
                 <div className="row">
                     <span className="square"></span>
                     <span className="square"></span>
@@ -39,4 +55,11 @@ const button = () => {
     );
 }
 
-export default button;
+const mapStateToProps = state => ({
+    nowMode: state.listMode
+})
+
+export default connect(
+    mapStateToProps,
+    changeListMode
+  )(ModeButton)

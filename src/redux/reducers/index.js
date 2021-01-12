@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import visibilityFilter from "./visibilityFilter";
-import todos from "./todos";
+import listMode from "./listMode";
 
-export default combineReducers({ todos, visibilityFilter });
+export default combineReducers({ listMode });

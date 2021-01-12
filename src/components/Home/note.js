@@ -107,13 +107,9 @@ const Note = styled.li`
 
 `
 
-const note = () => {
-    // const list_mode = {};
-    // const gallery_mode = {};
-    // const theme = list_mode;
+const note = (props) => {
     return (
-        // <ThemeProvider theme={theme}>
-            <Note className="gallery_mode">
+            <Note className={props.nowMode==='gallery'?'gallery_mode':''}>
                 <div className="primary_mark">
                     <FontAwesomeIcon icon={faStar} className="icon" />
                 </div>
@@ -126,7 +122,6 @@ const note = () => {
                     <span className="note_made_date">Dec 25, 2019</span>
                 </div>
             </Note>
-        // </ThemeProvider>
     );
 }
 
