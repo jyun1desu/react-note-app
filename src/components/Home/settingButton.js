@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { color } from '../../style/color';
+//router
+import { Link } from 'react-router-dom';
 
 const Setting = styled.button`
     display: inline-block;
@@ -32,10 +34,10 @@ const Setting = styled.button`
 const button = () => {
     return (
         <Setting>
-            <div className="profile">
+            <Link to="/setting" className="profile">
                 <div className="head"></div>
                 <div className="body"></div>
-            </div>
+            </Link>
         </Setting>
     );
 }

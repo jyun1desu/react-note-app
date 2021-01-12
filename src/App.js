@@ -3,6 +3,7 @@ import { color } from './style/color';
 //components
 import Home from './view/NoteApp';
 import EditPage from './view/EditNote';
+import SettingPage from './view/Setting';
 //router
 import {
   HashRouter as Router,
@@ -24,6 +25,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/new" component={EditPage}/>
+          <Route exact path="/setting" component={SettingPage}/>
         </Switch>
       </Page>
     </Router>

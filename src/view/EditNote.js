@@ -15,6 +15,9 @@ const Page = styled.div`
         display: flex;
         justify-content:  space-between;
         align-items: center;
+        .icon{
+            color: #000;
+        }
     }
     .note_main_info{
         text-align: center;
@@ -23,7 +26,21 @@ const Page = styled.div`
             &__title{
                 font-size: 16px;
                 font-weight: 600;
+                letter-spacing: 1px;
                 margin-bottom: 5px;
+                background-color: transparent;
+                border: none;
+                text-align: center;
+                padding: 0;
+                &:focus{
+                    outline: none;
+                }
+                &::placeholder{
+                    font-size: 16px;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                    color:#999;
+                }
             }
             &__made_date{
                 font-size: 13px;
@@ -37,8 +54,14 @@ const Page = styled.div`
     }
 `
 
-function EditNote(){
+function EditNote() {
     const textContent = '';
+    const today = new Date();
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = monthNames[today.getMonth()];
+    const yyyy = today.getFullYear();
+    const todayDateString = `${mm} ${dd}, ${yyyy}`
     return (
         <Page>
             <div className="top_nav">
@@ -46,10 +69,10 @@ function EditNote(){
                     <FontAwesomeIcon icon={faChevronLeft} className="icon" />
                 </Link>
                 <div className="note_main_info">
-                    <p className="note note__title">Title</p>
-                    <p className="note note__made_date">Dec 25, 2019</p>
+                    <input className="note note__title" placeholder="Title" />
+                    <p className="note note__made_date">{todayDateString}</p>
                 </div>
-                <DoneButton/>
+                <DoneButton />
             </div>
             <div className="note_area">
                 <TextArea textContent={textContent} />
