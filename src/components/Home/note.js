@@ -119,6 +119,19 @@ const Note = styled.li`
             border-radius: 50%;
             margin-left: 7px;
         }
+
+        &.gallery_mode{
+            .note_made_date{
+                margin-left: 0;
+                margin-right: auto;
+            }
+            .deleted_select{
+                position: absolute;
+                z-index: 2;
+                right: 0;
+                bottom: 0;
+            }
+        }
     }
 
 `
