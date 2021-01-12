@@ -21,7 +21,6 @@ const Area = styled.textarea`
 const TextArea = (prop) => {
     return (
         <Area>
-        {prop.textContent}
         </Area>
     );
 }

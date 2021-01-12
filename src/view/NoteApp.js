@@ -66,7 +66,7 @@ function Home() {
             </main>
             <footer>
                 <ChangeViewModeButton />
-                <HandleNoteAmountButton type="plus" />
+                <HandleNoteAmountButton/>
             </footer>
         </NoteApp>
     );

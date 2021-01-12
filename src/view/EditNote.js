@@ -4,6 +4,8 @@ import DoneButton from '../components/EditPage/addButton';
 import TextArea from '../components/EditPage/textArea';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+//router
+import { Link } from 'react-router-dom';
 
 const Page = styled.div`
     height: 100%;
@@ -40,11 +42,11 @@ function EditNote(){
     return (
         <Page>
             <div className="top_nav">
-                <button className="back_to_previous">
+                <Link to="/" className="back_to_previous">
                     <FontAwesomeIcon icon={faChevronLeft} className="icon" />
-                </button>
+                </Link>
                 <div className="note_main_info">
-                    <p className="note note__title">Promise</p>
+                    <p className="note note__title">Title</p>
                     <p className="note note__made_date">Dec 25, 2019</p>
                 </div>
                 <DoneButton/>

@@ -3,6 +3,8 @@ import { color } from '../../style/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { connect } from 'react-redux';
+//router
+import { useHistory } from "react-router-dom";
 
 const Button = styled.button`
     .plus_icon{
@@ -31,10 +33,24 @@ const Button = styled.button`
     }
 `
 
-
 const HandleButton = (props) => {
+    const history = useHistory();
+    function handleClick(){
+        switch (props.isDeleteMode) {
+            case true:
+                console.log('減')
+                break;
+            case false:
+                history.push('/new')
+                break;
+            default:
+                break;
+        }
+    }
     return (
-        <Button isDeleteMode={props.isDeleteMode}>
+        <Button 
+        onClick={()=>handleClick()}
+        isDeleteMode={props.isDeleteMode}>
             <FontAwesomeIcon icon={faTrashAlt} className="delete_icon" />
             <div className="plus_icon">
                 <span className="line horizantal"></span>
