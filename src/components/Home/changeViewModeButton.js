@@ -8,22 +8,36 @@ import { useDispatch } from 'react-redux';
 
 const Button = styled.button`
     .button_icon{
+        width: 22px;
+        height: 22px;
+        display: flex;
+        flex-direction: column;
         .row{
+            flex: 1 1 auto;
             font-size: 0;
-            &+.row{
-                    margin-top: 3px;
-                }
+            display: flex;
+            &:nth-child(3){
+                display:none;
+            }
             .square{
-                &+.square{
-                    margin-left: 3px;
-                }
-                display: inline-block;
-                width: 8px;
-                height: 8px;
+                flex: 0 1 50%;
+                margin: 1.5px;
                 background-color: ${color.line_color};
+            }
         }
+        &.gallery_mode{
+            .row{
+                &:nth-child(3){
+                    display: flex;
+                }
+                .square{
+                    &:first-child{
+                        flex: 1 1 100%;
+                        margin-right:2px;
+                    }
+            }
+            }
         }
-
     }
 `
 
@@ -41,7 +55,11 @@ const ModeButton = (props) => {
         <Button>
             <div 
             onClick={()=>{handleChangeMode()}}
-            className="button_icon">
+            className={`button_icon ${props.nowMode==='gallery'?'gallery_mode':''}`}>
+                <div className="row">
+                    <span className="square"></span>
+                    <span className="square"></span>
+                </div>
                 <div className="row">
                     <span className="square"></span>
                     <span className="square"></span>
