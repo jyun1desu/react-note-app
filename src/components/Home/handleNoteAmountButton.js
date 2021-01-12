@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../../style/color';
+import { defaultTheme } from '../../style/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { connect } from 'react-redux';
@@ -15,7 +15,7 @@ const Button = styled.button`
         .line{
             display: inline-block;
             width: 100%;
-            border-top: 3px solid ${color.line_color};
+            border-top: 3px solid ${defaultTheme.line_color};
             position: absolute;
             top:50%;
             left:50%;
@@ -28,7 +28,7 @@ const Button = styled.button`
     }
     .delete_icon{
         display: ${props=>props.isDeleteMode?'block':'none'};
-        color: ${color.line_color};
+        color: ${defaultTheme.line_color};
         font-size: 17px;
     }
 `

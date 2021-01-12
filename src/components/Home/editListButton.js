@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../../style/color';
+import { defaultTheme } from '../../style/color';
 //redux
 import { connect } from 'react-redux';
 import { toggleDeleteMode } from '../../redux/actions'
@@ -9,7 +9,7 @@ const Button = styled.button`
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 2px solid ${color.line_color};
+    border: 2px solid ${defaultTheme.line_color};
     border-radius: 50%;
     padding: 2px;
     box-sizing: border-box;
@@ -22,7 +22,7 @@ const Button = styled.button`
             width: 2px;
             height: 2px;      
             border-radius: 50%;
-            background-color: ${color.line_color};
+            background-color: ${defaultTheme.line_color};
         }
     }
 

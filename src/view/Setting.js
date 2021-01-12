@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../style/color';
+import { defaultTheme, darkTheme } from '../style/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 //components
 import SettingButton from '../components/Home/settingButton';
 import ToggleThemeButton from '../components/Setting/toggleThemeButton';
+//redux
+import { connect } from 'react-redux';
 
 const Page = styled.div`
     display: flex;
@@ -28,7 +30,7 @@ const Page = styled.div`
                 }
                 &.sub{
                     font-size: 12px; 
-                    color: ${color.line_color};
+                    color: ${defaultTheme.line_color};
                     margin-top: 5px;
                     font-family: 'Mulish', sans-serif;
                     letter-spacing: 1px;
@@ -42,7 +44,8 @@ const Page = styled.div`
             .cross{
                 font-size: 32px;
                 line-height: 32px;
-                color: ${color.line_color};
+                transition: .3s all;
+                color: ${defaultTheme.line_color};
             }
         }
     }
@@ -77,11 +80,21 @@ const Page = styled.div`
             display: flex;
         }
     }
+
+    &.dark{
+        header{
+            .close_button{
+                .cross{
+                color: ${darkTheme.line_color};
+                }
+            }
+        }
+    }
 `
 
-function Setting() {
+function Setting(props) {
     return (
-        <Page>
+        <Page className={props.theme === 'dark-theme' ? 'dark' : ''}>
             <header>
                 <SettingButton />
                 <div className="title">
@@ -117,7 +130,7 @@ function Setting() {
             <footer>
                 <div className="mode_toggle">
                     <span>Mode</span>
-                    <ToggleThemeButton/>
+                    <ToggleThemeButton />
                 </div>
                 <div className="logout">Log out</div>
             </footer>
@@ -125,4 +138,10 @@ function Setting() {
     )
 }
 
-export default Setting;
+const mapStateToProps = state => ({
+    theme: state.theme
+})
+
+export default connect(
+    mapStateToProps
+)(Setting);

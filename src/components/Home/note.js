@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../../style/color';
+import { defaultTheme } from '../../style/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import defaultCover from "../../assets/P1013711.jpg";
@@ -23,16 +23,16 @@ const Note = styled.li`
 
         .icon{
             font-size: 16px;
-            color: ${color.non_highlight_color};
+            color: ${defaultTheme.non_highlight_color};
             .primary{
-                color: ${color.highlight_color};
+                color: ${defaultTheme.highlight_color};
             }
         }
     }
     .note_info{
         flex: 1 1 auto;
         border-radius: 10px;
-        background-color: ${color.note_block_background};
+        background-color: ${defaultTheme.note_block_background};
         margin-left: -15px;
         padding: 10px 15px 10px 25px;
         z-index: 1;
@@ -73,7 +73,7 @@ const Note = styled.li`
             align-items: flex-start;
             margin-left: 0;
             .note_title{
-                color: ${color.line_color};
+                color: ${defaultTheme.line_color};
                 margin: 0 0 3px 0;
                 font-size: 17px;
             }
@@ -115,7 +115,7 @@ const Note = styled.li`
         .deleted_select{
             width: 15px;
             height: 15px;
-            border: 1px solid ${color.line_color};
+            border: 1px solid ${defaultTheme.line_color};
             border-radius: 50%;
             margin-left: 7px;
         }

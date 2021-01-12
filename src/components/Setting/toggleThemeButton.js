@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../../style/color';
+import { defaultTheme } from '../../style/color';
 //redux
 import { connect } from 'react-redux';
 import { toggleTheme } from '../../redux/actions'
@@ -10,7 +10,7 @@ const Toggler = styled.div`
     height: 18px;
     margin-left: 10px;
     border-radius: 20px;
-    background-color: ${color.line_color};
+    background-color: ${defaultTheme.line_color};
 
     .switch_button{
         display: inline-block;
@@ -30,7 +30,6 @@ const Toggler = styled.div`
 
 function Button(props) {
     const dispatch = useDispatch();
-    console.log(props.theme)
     function switchTheme() {
         if(props.theme==='default'){
             dispatch(toggleTheme('dark-theme'));

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../style/color';
+import { defaultTheme } from '../style/color';
 import DoneButton from '../components/EditPage/addButton';
 import TextArea from '../components/EditPage/textArea';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -44,7 +44,7 @@ const Page = styled.div`
             }
             &__made_date{
                 font-size: 13px;
-                color: ${color.line_color};
+                color: ${defaultTheme.line_color};
             }
         }
     }

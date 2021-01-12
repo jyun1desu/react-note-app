@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../../style/color';
+import { defaultTheme } from '../../style/color';
 //redux
 import { connect } from 'react-redux';
 import { changeListMode } from '../../redux/actions'
@@ -22,7 +22,7 @@ const Button = styled.button`
             .square{
                 flex: 0 1 50%;
                 margin: 1.5px;
-                background-color: ${color.line_color};
+                background-color: ${defaultTheme.line_color};
             }
         }
         &.gallery_mode{

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from './style/color';
+import { defaultTheme , darkTheme } from './style/color';
 //components
 import Home from './view/NoteApp';
 import EditPage from './view/EditNote';
@@ -10,18 +10,26 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+//redux
+import { connect } from 'react-redux';
 
 const Page = styled.div`
     height: 100%;
     padding: 15px;
     box-sizing: border-box;
-    background-color: ${color.main_background_color};
+    background-color: ${defaultTheme.main_background_color};
+    color: #333;
+    transition: .3s all;
+    &.dark{
+      background-color: ${darkTheme.main_background_color};
+      color: #fff;
+    }
 `
 
-function App() {
+function App(props) {
   return (
     <Router>
-      <Page>
+      <Page className={props.theme==='dark-theme'?'dark':''}>
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/new" component={EditPage}/>
@@ -32,4 +40,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  theme: state.theme
+})
+
+export default connect(
+  mapStateToProps
+)(App)

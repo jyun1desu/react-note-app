@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../../style/color';
+import { defaultTheme } from '../../style/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
@@ -14,7 +14,7 @@ const SearchArea = styled.div`
         border-radius:20px;
         background-color: #FFE3E3;
         padding:8px 20px;
-        color: ${color.line_color};
+        color: ${defaultTheme.line_color};
         font-family: 'Mulish', sans-serif;
         font-size: 14px;
         letter-spacing: 1px;
@@ -27,7 +27,7 @@ const SearchArea = styled.div`
     }
     .icon{
         position: absolute;
-        color: ${color.line_color};
+        color: ${defaultTheme.line_color};
         right: 10px;
         top: 50%;
         transform: translateY(-50%);
