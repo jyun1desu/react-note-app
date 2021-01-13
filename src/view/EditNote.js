@@ -90,7 +90,8 @@ function EditNote(props) {
         const note = {
             title: noteTitle || 'No Title',
             madeDate: noteMadeDate,
-            content: noteContent
+            content: noteContent,
+            primary: false
         }
         dispatch(addNote(note));
     }

@@ -149,18 +149,21 @@ const Note = styled.li`
 
 `
 const NoteInfo = (props) => {
+    const note = props.note;
     return (
             <Note className={`${props.nowMode==='gallery'?'gallery_mode':''} ${props.isDeletedMode?'deleted_mode':''} ${props.theme==='dark-theme'?'dark':''}`}>
                 <div className="primary_mark">
-                    <FontAwesomeIcon icon={faStar} className="icon" />
+                    <FontAwesomeIcon 
+                        icon={faStar}
+                        className={`icon ${note.primary?'primary':''}`} />
                 </div>
                 <div className="note_info">
-                    <p className="note_title">Promise</p>
+                    <p className="note_title">{note.title}</p>
                     <div className="gallery_cover">
                         <div className="shine"></div>
                         <img src={defaultCover} alt=""/>
                     </div>
-                    <span className="note_made_date">Dec 25, 2019</span>
+                    <span className="note_made_date">{note.madeDate}</span>
                 </div>
                 <span className="deleted_select"></span>
             </Note>

@@ -20,8 +20,13 @@ const NoteList = (props) => {
     const notes = props.notes;
     return (
         <List className={props.nowMode === 'gallery' ? 'gallery_mode' : ''}>
-            {notes.map(()=>{
-                return <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+            {notes.map((note,index)=>{
+                return <Note 
+                nowMode={props.nowMode} 
+                isDeletedMode={props.isDeletedMode} 
+                note={note}
+                key={index}
+                />
             })}
         </List>
     );
