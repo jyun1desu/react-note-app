@@ -91,7 +91,7 @@ function EditNote(props) {
             title: noteTitle || 'No Title',
             madeDate: noteMadeDate,
             content: noteContent,
-            primary: false
+            primary: false,
         }
         dispatch(addNote(note));
     }

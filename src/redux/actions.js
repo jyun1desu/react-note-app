@@ -3,7 +3,8 @@ import {
     TOGGLE_DELETE_MODE,
     TOGGLE_THEME,
     ADD_NOTE,
-    DELETE_NOTE
+    DELETE_NOTE,
+    EDIT_NOTE
 } from "./actionTypes";
 
 export const changeListMode = (mode) => ({
@@ -23,6 +24,11 @@ export const toggleTheme = (theme) => ({
 export const addNote = (note) => ({
     type: ADD_NOTE,
     payload: {note}
+})
+
+export const editNote = (payload) => ({
+    type: EDIT_NOTE,
+    payload: payload
 });
 
 export const deleteNote = (notes) => ({

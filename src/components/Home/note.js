@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { defaultTheme , darkTheme } from '../../style/color';
+import { defaultTheme, darkTheme } from '../../style/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import defaultCover from "../../assets/P1013711.jpg";
 //redux
 import { connect } from 'react-redux';
+import { editNote } from '../../redux/actions'
+import { useDispatch } from 'react-redux';
 
 const Note = styled.li`
     display: flex;
@@ -25,7 +27,7 @@ const Note = styled.li`
         .icon{
             font-size: 16px;
             color: ${defaultTheme.non_highlight_color};
-            .primary{
+            &.primary{
                 color: ${defaultTheme.highlight_color};
             }
         }
@@ -150,30 +152,49 @@ const Note = styled.li`
 `
 const NoteInfo = (props) => {
     const note = props.note;
+    const dispatch = useDispatch();
+    function togglePrimary() {
+        const index = props.noteList.indexOf(note)
+        const newNote = {
+            ...note,
+            primary: !note.primary
+        }
+        dispatch(editNote({
+            note: newNote,
+            index: index
+        }))
+    }
     return (
-            <Note className={`${props.nowMode==='gallery'?'gallery_mode':''} ${props.isDeletedMode?'deleted_mode':''} ${props.theme==='dark-theme'?'dark':''}`}>
-                <div className="primary_mark">
-                    <FontAwesomeIcon 
-                        icon={faStar}
-                        className={`icon ${note.primary?'primary':''}`} />
+        <Note 
+        className={`${props.nowMode === 'gallery' ? 'gallery_mode' : ''} 
+        ${props.isDeletedMode ? 'deleted_mode' : ''} 
+        ${props.theme === 'dark-theme' ? 'dark' : ''}`}>
+            <div
+                onClick={() => togglePrimary()}
+                className="primary_mark">
+                <FontAwesomeIcon
+                    icon={faStar}
+                    className={`icon ${note.primary ? 'primary' : ''}`} />
+            </div>
+            <div className="note_info">
+                <p className="note_title">{note.title}</p>
+                <div className="gallery_cover">
+                    <div className="shine"></div>
+                    <img src={defaultCover} alt="" />
                 </div>
-                <div className="note_info">
-                    <p className="note_title">{note.title}</p>
-                    <div className="gallery_cover">
-                        <div className="shine"></div>
-                        <img src={defaultCover} alt=""/>
-                    </div>
-                    <span className="note_made_date">{note.madeDate}</span>
-                </div>
-                <span className="deleted_select"></span>
-            </Note>
+                <span className="note_made_date">{note.madeDate}</span>
+            </div>
+            <span className="deleted_select"></span>
+        </Note>
     );
 }
 
 const mapStateToProps = state => ({
-    theme: state.theme
+    theme: state.theme,
+    noteList: state.noteList
 })
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    editNote
 )(NoteInfo)
