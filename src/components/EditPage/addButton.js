@@ -21,7 +21,9 @@ const Button = styled.button`
 
 const EditButton = (props) => {
     return (
-        <Button className={props.theme==='dark-theme'?'dark':''}>
+        <Button 
+        onClick={()=>props.handleSubmit()}
+        className={props.theme==='dark-theme'?'dark':''}>
             <FontAwesomeIcon icon={faCheck} className="icon" />
         </Button>
     );

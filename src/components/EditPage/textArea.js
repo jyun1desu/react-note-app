@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Area = styled.textarea`
+const Area = styled.div`
     color: #666;
     font-size: 16px;
     line-height: 24px;
@@ -22,8 +22,16 @@ const Area = styled.textarea`
 `
 
 const TextArea = (props) => {
+    function setNoteContent(content){
+        const reg = /(?![^<]*>)[^<]/g
+        const wrapped = content.replace(reg, letter=>`<span>${letter}</span>\n`)
+        props.setNoteContent(wrapped)
+    }
     return (
-        <Area className={props.theme==='dark-theme'?'dark':''}>
+        <Area 
+        contentEditable="true"
+        onInput={(e)=>{setNoteContent(e.target.innerHTML)}}
+        className={props.theme==='dark-theme'?'dark':''}>
         </Area>
     );
 }

@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 import { defaultTheme } from '../style/color';
-import DoneButton from '../components/EditPage/addButton';
-import TextArea from '../components/EditPage/textArea';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react';
+//components
+import DoneButton from '../components/EditPage/addButton';
+import TextArea from '../components/EditPage/textArea';
+import Date from '../components/EditPage/todayDate';
 //router
 import { Link } from 'react-router-dom';
 //redux
 import { connect } from 'react-redux';
+import { addNote } from '../redux/actions'
+import { useDispatch } from 'react-redux';
 
 const Page = styled.div`
     height: 100%;
@@ -53,6 +58,7 @@ const Page = styled.div`
     .note_area{
         margin: 30px 10px 0;
         flex: 1 1 auto;
+        overflow: scroll;
     }
 
     &.dark{
@@ -75,36 +81,52 @@ const Page = styled.div`
 `
 
 function EditNote(props) {
-    const textContent = '';
-    const today = new Date();
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-    const dd = String(today.getDate()).padStart(2, '0');
-    const mm = monthNames[today.getMonth()];
-    const yyyy = today.getFullYear();
-    const todayDateString = `${mm} ${dd}, ${yyyy}`
+    const [noteTitle, setNoteTitle] = useState('');
+    const [noteMadeDate, setNoteMadeDate] = useState('');
+    const [noteContent, setNoteContent] = useState('');
+    const dispatch = useDispatch();
+    
+    function handleSubmit() {
+        const note = {
+            title: noteTitle || 'No Title',
+            madeDate: noteMadeDate,
+            content: noteContent
+        }
+        dispatch(addNote(note));
+    }
+
     return (
-        <Page className={props.theme==='dark-theme'?'dark':''}>
+        <Page className={props.theme === 'dark-theme' ? 'dark' : ''}>
             <div className="top_nav">
                 <Link to="/" className="back_to_previous">
                     <FontAwesomeIcon icon={faChevronLeft} className="icon" />
                 </Link>
                 <div className="note_main_info">
-                    <input className="note note__title" placeholder="Title" />
-                    <p className="note note__made_date">{todayDateString}</p>
+                    <input
+                        className="note note__title"
+                        placeholder="Title"
+                        value={noteTitle}
+                        onChange={(e) => setNoteTitle(e.target.value)} />
+                    <Date setNoteMadeDate={setNoteMadeDate} />
                 </div>
-                <DoneButton theme={props.theme}/>
+                <DoneButton theme={props.theme} handleSubmit={handleSubmit} />
             </div>
             <div className="note_area">
-                <TextArea theme={props.theme} textContent={textContent} />
+                <TextArea
+                    theme={props.theme}
+                    setNoteContent={setNoteContent}
+                />
             </div>
         </Page>
     )
 }
 
 const mapStateToProps = state => ({
-    theme: state.theme
+    theme: state.theme,
+    noteList: state.noteList
 })
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    addNote
 )(EditNote)

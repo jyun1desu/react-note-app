@@ -17,27 +17,22 @@ const List = styled.ul`
 `
 
 const NoteList = (props) => {
+    const notes = props.notes;
     return (
-        <List className={props.nowMode==='gallery'?'gallery_mode':''}>
-            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
-            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
-            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
-            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
-            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
-            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
-            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
-            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
-            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
-            <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+        <List className={props.nowMode === 'gallery' ? 'gallery_mode' : ''}>
+            {notes.map(()=>{
+                return <Note nowMode={props.nowMode} isDeletedMode={props.isDeletedMode} />
+            })}
         </List>
     );
 }
 
 const mapStateToProps = state => ({
     nowMode: state.listMode,
-    isDeletedMode: state.deleteMode
+    isDeletedMode: state.deleteMode,
+    notes: state.noteList
 })
 
 export default connect(
     mapStateToProps
-  )(NoteList)
+)(NoteList)
