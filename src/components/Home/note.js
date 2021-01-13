@@ -3,6 +3,7 @@ import { defaultTheme, darkTheme } from '../../style/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import defaultCover from "../../assets/P1013711.jpg";
+import { useState , useEffect } from 'react';
 //redux
 import { connect } from 'react-redux';
 import { editNote } from '../../redux/actions'
@@ -120,7 +121,10 @@ const Note = styled.li`
             height: 15px;
             border: 1px solid ${defaultTheme.line_color};
             border-radius: 50%;
-            margin-left: 7px;
+            margin-left: 10px;
+            &.selected{
+                background-color: ${defaultTheme.line_color};
+            }
         }
 
         &.gallery_mode{
@@ -151,10 +155,27 @@ const Note = styled.li`
 
 `
 const NoteInfo = (props) => {
+    const [isToDelete,setDelete] = useState(false)
     const note = props.note;
+    const index = props.noteList.indexOf(note)
+    const isDeleteMode = props.isDeleteMode
     const dispatch = useDispatch();
+
+    useEffect(()=>{
+        const addToDeleteList = props.addToDeleteList;
+        const removeFromDeleteList = props.removeFromDeleteList;
+        if(isToDelete){
+            addToDeleteList(index);
+        }else{
+            removeFromDeleteList(index);
+        }
+    },[isToDelete,index])
+
+    useEffect(()=>{
+        setDelete(false)
+    },[isDeleteMode])
+    
     function togglePrimary() {
-        const index = props.noteList.indexOf(note)
         const newNote = {
             ...note,
             primary: !note.primary
@@ -165,6 +186,7 @@ const NoteInfo = (props) => {
         }))
     }
     return (
+        
         <Note 
         className={`${props.nowMode === 'gallery' ? 'gallery_mode' : ''} 
         ${props.isDeletedMode ? 'deleted_mode' : ''} 
@@ -184,14 +206,17 @@ const NoteInfo = (props) => {
                 </div>
                 <span className="note_made_date">{note.madeDate}</span>
             </div>
-            <span className="deleted_select"></span>
+            <span 
+            onClick={()=>{setDelete(!isToDelete)}}
+            className={`deleted_select ${isToDelete?'selected':''}`}/>
         </Note>
     );
 }
 
 const mapStateToProps = state => ({
     theme: state.theme,
-    noteList: state.noteList
+    noteList: state.noteList,
+    isDeleteMode: state.deleteMode
 })
 
 export default connect(

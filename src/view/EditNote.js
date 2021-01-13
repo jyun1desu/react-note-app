@@ -9,6 +9,7 @@ import TextArea from '../components/EditPage/textArea';
 import Date from '../components/EditPage/todayDate';
 //router
 import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 //redux
 import { connect } from 'react-redux';
 import { addNote } from '../redux/actions'
@@ -85,8 +86,10 @@ function EditNote(props) {
     const [noteMadeDate, setNoteMadeDate] = useState('');
     const [noteContent, setNoteContent] = useState('');
     const dispatch = useDispatch();
-    
+    const history = useHistory();
+
     function handleSubmit() {
+        if (!noteContent && noteTitle === 'No Title') return;
         const note = {
             title: noteTitle || 'No Title',
             madeDate: noteMadeDate,
@@ -94,6 +97,7 @@ function EditNote(props) {
             primary: false,
         }
         dispatch(addNote(note));
+        history.push('/');
     }
 
     return (

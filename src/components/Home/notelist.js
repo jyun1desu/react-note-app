@@ -18,10 +18,14 @@ const List = styled.ul`
 
 const NoteList = (props) => {
     const notes = props.notes;
+
     return (
         <List className={props.nowMode === 'gallery' ? 'gallery_mode' : ''}>
             {notes.map((note,index)=>{
                 return <Note 
+                deleteList={props.deleteList}
+                removeFromDeleteList={props.removeFromDeleteList}
+                addToDeleteList={props.addToDeleteList}
                 nowMode={props.nowMode} 
                 isDeletedMode={props.isDeletedMode} 
                 note={note}

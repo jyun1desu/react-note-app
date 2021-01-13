@@ -8,7 +8,7 @@ import {
 const list = (state = [], action) => {
     switch (action.type) {
         case ADD_NOTE: {
-            const newList = [...state, action.payload.note]
+            const newList = [action.payload.note,...state]
             return newList
         }
         case EDIT_NOTE: {
@@ -18,7 +18,11 @@ const list = (state = [], action) => {
             return newList
         }
         case DELETE_NOTE: {
-            return action.payload.mode;
+            const shouldDelete = action.payload.notes
+            const newList = state.filter((note,index)=>{
+                return !shouldDelete.includes(index)
+            })
+            return newList;
         }
         default: {
             return state;

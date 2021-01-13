@@ -2,9 +2,12 @@ import styled from 'styled-components';
 import { defaultTheme } from '../../style/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
-import { connect } from 'react-redux';
 //router
 import { useHistory } from "react-router-dom";
+//redux
+import { connect } from 'react-redux';
+import { deleteNote } from '../../redux/actions'
+import { useDispatch } from 'react-redux';
 
 const Button = styled.button`
     .plus_icon{
@@ -35,10 +38,12 @@ const Button = styled.button`
 
 const HandleButton = (props) => {
     const history = useHistory();
+    const dispatch = useDispatch();
     function handleClick(){
         switch (props.isDeleteMode) {
             case true:
-                console.log('減')
+                dispatch(deleteNote(props.deleteList));
+                props.setDeleteList([]);
                 break;
             case false:
                 history.push('/new')
@@ -65,5 +70,6 @@ const mapStateToProps = state => ({
 })
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    deleteNote
 )(HandleButton);

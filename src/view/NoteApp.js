@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darkTheme } from "../style/color";
+import { useState } from 'react';
 //components
 import NoteList from '../components/Home/notelist';
 import SearchBar from '../components/Home/searchbar';
@@ -66,23 +67,43 @@ const NoteApp = styled.div`
 `
 
 function Home(props) {
+    const [deleteList,setDeleteList] = useState([]);
+
+    function addToDeleteList(index){
+        const newList = [...deleteList,index]
+        setDeleteList(newList)
+    }
+
+    function removeFromDeleteList(index){
+        const newList = deleteList.filter(i=>i!==index);
+        setDeleteList(newList)
+    }
     return (
-        <NoteApp className={props.theme==='dark-theme'?'dark':''}>
+        <NoteApp className={props.theme === 'dark-theme' ? 'dark' : ''}>
             <header>
                 <SettingButton />
                 <div className="title">
                     <p className="main">All NOTES</p>
                     <p className="sub">Total 5 Notes</p>
                 </div>
-                <EditListButton />
+                <EditListButton 
+                setDeleteList={setDeleteList}
+                />
             </header>
             <SearchBar />
             <main>
-                <NoteList />
+                <NoteList
+                    deleteList={deleteList}
+                    removeFromDeleteList={removeFromDeleteList}
+                    addToDeleteList={addToDeleteList}
+                />
             </main>
             <footer>
                 <ChangeViewModeButton />
-                <HandleNoteAmountButton />
+                <HandleNoteAmountButton 
+                    deleteList={deleteList}
+                    setDeleteList={setDeleteList}
+                />
             </footer>
         </NoteApp>
     );

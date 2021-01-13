@@ -32,6 +32,7 @@ const EditButton = (props) => {
     const dispatch = useDispatch();
     function toggleMode(){
         dispatch(toggleDeleteMode());
+        props.setDeleteList([]);
     }
     return (
         <Button onClick={()=>toggleMode()}>
