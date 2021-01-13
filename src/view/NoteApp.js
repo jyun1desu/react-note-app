@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darkTheme } from "../style/color";
 //components
 import NoteList from '../components/Home/notelist';
 import SearchBar from '../components/Home/searchbar';
@@ -6,6 +7,8 @@ import EditListButton from '../components/Home/editListButton';
 import ChangeViewModeButton from '../components/Home/changeViewModeButton';
 import HandleNoteAmountButton from '../components/Home/handleNoteAmountButton';
 import SettingButton from '../components/Home/settingButton';
+//redux
+import { connect } from 'react-redux';
 
 const NoteApp = styled.div`
     height:100%;
@@ -47,11 +50,24 @@ const NoteApp = styled.div`
         display: flex;
         justify-content: space-between;
     }
+
+    &.dark{
+        header{
+            .title{
+                .main{
+                    color:#000;
+                }
+                .sub{
+                    color: ${darkTheme.lighter_font_color};
+                }
+            }
+        }
+    }
 `
 
-function Home() {
+function Home(props) {
     return (
-        <NoteApp>
+        <NoteApp className={props.theme==='dark-theme'?'dark':''}>
             <header>
                 <SettingButton />
                 <div className="title">
@@ -66,10 +82,16 @@ function Home() {
             </main>
             <footer>
                 <ChangeViewModeButton />
-                <HandleNoteAmountButton/>
+                <HandleNoteAmountButton />
             </footer>
         </NoteApp>
     );
 }
 
-export default Home;
+const mapStateToProps = state => ({
+    theme: state.theme
+})
+
+export default connect(
+    mapStateToProps
+)(Home)

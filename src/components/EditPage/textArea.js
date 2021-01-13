@@ -16,11 +16,14 @@ const Area = styled.textarea`
     &:focus{
         outline: none;
     }
+    &.dark{
+        color: #fff;
+    }
 `
 
-const TextArea = (prop) => {
+const TextArea = (props) => {
     return (
-        <Area>
+        <Area className={props.theme==='dark-theme'?'dark':''}>
         </Area>
     );
 }

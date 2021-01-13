@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { defaultTheme, darkTheme } from '../style/color';
+import { defaultTheme } from '../style/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
@@ -78,16 +78,6 @@ const Page = styled.div`
         align-items: center;
         .mode_toggle{
             display: flex;
-        }
-    }
-
-    &.dark{
-        header{
-            .close_button{
-                .cross{
-                color: ${darkTheme.line_color};
-                }
-            }
         }
     }
 `

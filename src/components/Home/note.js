@@ -1,14 +1,15 @@
 import styled from 'styled-components';
-import { defaultTheme } from '../../style/color';
+import { defaultTheme , darkTheme } from '../../style/color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import defaultCover from "../../assets/P1013711.jpg";
-// import { ThemeProvider } from "styled-components";
+//redux
+import { connect } from 'react-redux';
 
 const Note = styled.li`
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin: 10px 0;
 
     .primary_mark{
         width: 30px;
@@ -134,11 +135,22 @@ const Note = styled.li`
         }
     }
 
-`
+    &.dark{
+        .primary_mark{
+            background-color: ${darkTheme.dark_grey_color};
+        }
+        .note_info{
+            background-color: ${darkTheme.note_block_background};
+            .note_title{
+                color: ${darkTheme.lighter_font_color};
+            }
+        }
+    }
 
-const note = (props) => {
+`
+const NoteInfo = (props) => {
     return (
-            <Note className={`${props.nowMode==='gallery'?'gallery_mode':''} ${props.isDeletedMode?'deleted_mode':''}`}>
+            <Note className={`${props.nowMode==='gallery'?'gallery_mode':''} ${props.isDeletedMode?'deleted_mode':''} ${props.theme==='dark-theme'?'dark':''}`}>
                 <div className="primary_mark">
                     <FontAwesomeIcon icon={faStar} className="icon" />
                 </div>
@@ -155,4 +167,10 @@ const note = (props) => {
     );
 }
 
-export default note;
+const mapStateToProps = state => ({
+    theme: state.theme
+})
+
+export default connect(
+    mapStateToProps
+)(NoteInfo)

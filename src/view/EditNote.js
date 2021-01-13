@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 //router
 import { Link } from 'react-router-dom';
+//redux
+import { connect } from 'react-redux';
 
 const Page = styled.div`
     height: 100%;
@@ -24,7 +26,7 @@ const Page = styled.div`
         .note{
             margin: 0;
             &__title{
-                font-size: 16px;
+                font-size: 18px;
                 font-weight: 600;
                 letter-spacing: 1px;
                 margin-bottom: 5px;
@@ -36,7 +38,7 @@ const Page = styled.div`
                     outline: none;
                 }
                 &::placeholder{
-                    font-size: 16px;
+                    font-size: 18px;
                     font-weight: 600;
                     letter-spacing: 1px;
                     color:#999;
@@ -52,9 +54,27 @@ const Page = styled.div`
         margin: 30px 10px 0;
         flex: 1 1 auto;
     }
+
+    &.dark{
+        .top_nav{
+            .icon{
+                color: #fff;
+            }
+        }
+        .note_main_info{
+            .note{
+                &__title{
+                    color: #fff;
+                    &::placeholder{
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
 `
 
-function EditNote() {
+function EditNote(props) {
     const textContent = '';
     const today = new Date();
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
@@ -63,7 +83,7 @@ function EditNote() {
     const yyyy = today.getFullYear();
     const todayDateString = `${mm} ${dd}, ${yyyy}`
     return (
-        <Page>
+        <Page className={props.theme==='dark-theme'?'dark':''}>
             <div className="top_nav">
                 <Link to="/" className="back_to_previous">
                     <FontAwesomeIcon icon={faChevronLeft} className="icon" />
@@ -72,13 +92,19 @@ function EditNote() {
                     <input className="note note__title" placeholder="Title" />
                     <p className="note note__made_date">{todayDateString}</p>
                 </div>
-                <DoneButton />
+                <DoneButton theme={props.theme}/>
             </div>
             <div className="note_area">
-                <TextArea textContent={textContent} />
+                <TextArea theme={props.theme} textContent={textContent} />
             </div>
         </Page>
     )
 }
 
-export default EditNote;
+const mapStateToProps = state => ({
+    theme: state.theme
+})
+
+export default connect(
+    mapStateToProps
+)(EditNote)

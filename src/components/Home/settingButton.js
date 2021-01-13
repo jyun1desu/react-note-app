@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { defaultTheme, darkTheme } from '../../style/color';
+import { defaultTheme } from '../../style/color';
 //router
 import { Link } from 'react-router-dom';
 //redux
@@ -35,15 +35,6 @@ const Setting = styled.button`
         }
     }
     &.dark{
-        border: 2px solid ${darkTheme.line_color};
-        .profile{
-            .head{
-            border: 2px solid ${darkTheme.line_color};
-        }
-        .body{
-            border: 2px solid ${darkTheme.line_color};
-            }
-        }
     }
 
 `

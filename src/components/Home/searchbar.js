@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { defaultTheme } from '../../style/color';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { defaultTheme , darkTheme} from '../../style/color';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+//redux
+import { connect } from 'react-redux';
 
 const SearchArea = styled.div`
     display: flex;
@@ -32,16 +34,32 @@ const SearchArea = styled.div`
         top: 50%;
         transform: translateY(-50%);
     }
+    &.dark{
+        .search_input{
+            background-color: ${darkTheme.note_block_background};
+            color: ${darkTheme.lighter_font_color};
+            &::placeholder{
+            color: ${darkTheme.lighter_font_color};
+            }
+        }
+
+    }
 `
 
 
-const searchBar = () => {
+const SearchBar = (props) => {
     return (
-        <SearchArea>
+        <SearchArea className={props.theme==='dark-theme'?'dark':''}>
             <input type="text" className="search_input" placeholder="Search"/>
             <FontAwesomeIcon icon={faSearch} className="icon"/>
         </SearchArea>
     );
 }
 
-export default searchBar;
+const mapStateToProps = state => ({
+    theme: state.theme
+})
+
+export default connect(
+    mapStateToProps
+)(SearchBar)

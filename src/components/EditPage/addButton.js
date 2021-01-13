@@ -13,11 +13,15 @@ const Button = styled.button`
     .icon{
         font-size: 12px;
     }
+
+    &.dark{
+        border: 2px solid #fff;
+    }
 `
 
-const EditButton = () => {
+const EditButton = (props) => {
     return (
-        <Button>
+        <Button className={props.theme==='dark-theme'?'dark':''}>
             <FontAwesomeIcon icon={faCheck} className="icon" />
         </Button>
     );
